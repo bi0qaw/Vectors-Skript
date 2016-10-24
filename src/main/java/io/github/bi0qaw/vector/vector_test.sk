@@ -1,0 +1,169 @@
+command /a:
+    trigger:
+        # rotate vector around another
+        set {_v} to vector 0, 1, 2
+        rotate {_v} around vector 1, 0, 0 by 90
+        send "v rotated around another:"
+        send "%{_v}%"
+        send "= 0, -2, 1"
+        set {_v} to vector 1, 0, 2
+        rotate {_v} around vector 0, 1, 0 by 90
+        send "v rotated around another:"
+        send "%{_v}%"
+        send "= 2, 0, -1"
+        set {_v} to vector 1, 2, 0
+        rotate {_v} around vector 0, 0, 1 by 90
+        send "v rotated around another:"
+        send "%{_v}%"
+        send "= -2, 1, 0"
+
+        # rotate vector around x|y|z axis
+        set {_v} to vector 0, 1, 2
+        rotate {_v} around x-axis by 90
+        send "v rotated around x-axis:"
+        send "%{_v}%"
+        send "= 0, -2, 1"
+        set {_v} to vector 1, 0, 2
+        rotate {_v} around y-axis by 90
+        send "v rotated around y-axis:"
+        send "%{_v}%"
+        send "= 2, 0, -1"
+        set {_v} to vector 1, 2, 0
+        rotate {_v} around z-axis by 90
+        send "v rotated around z-axis:"
+        send "%{_v}%"
+        send "= -2, 1, 0"
+
+        # angle between vectors
+        send "angle between vectors:"
+        send "%angle between vector 1, 0, 0 and vector 0, 1, 1%"
+        send "= 90"
+
+        # cross product
+        send "cross product:"
+        send "%vector 1, 0, 0 cross vector 0, 1, 0%"
+        send "= 0, 0, 1"
+
+        # cylindrical vector
+        send "cylindrical vector:"
+        send "%cylindrical vector 1, 45, 1%"
+        send "= -%sqrt(1/2)%, 1, %sqrt(1/2)%"
+
+        # dot product
+        # NOTE vector 1, 2, 3 dot vector 1, 2, 3 does NOT work!
+        # it returns a new vector: 1, 2, 18. This should not happen
+        # and I have no idea why it does. I have also no idea why
+        # "z" takes the value 18. There must be some black magic
+        # going on.
+        send "dot product:"
+        set {_v1} to vector 1, 2, 3
+        set {_v2} to vector 1, 2, 3
+        send "%vector 1, 2, 3 dot vector 1, 2, 3%"
+        send "%{_v1} dot {_v2}%"
+        send "= 14"
+
+        # location from vector
+        send "location from vector:"
+        send "%vector 1, 2, 3 in world ""world""%"
+        send "= 1, 2, 3"
+
+        # random vector
+        send "random vector:"
+        send "%random vector%"
+        send "= ?, ?, ?"
+
+        # spherical vector
+        send "spherical vector"
+        send "%spherical vector 1, 45, 45%"
+        send "= -0.5, -0.71, 0.5"
+
+        # vector arithmetic
+        set {_v} to vector 1, 2, 3
+        send "v ++ v:"
+        send "%{_v} ++ {_v}%"
+        send "= 2, 4, 6"
+        send "v -- v:"
+        send "%{_v} -- {_v}%"
+        send "= 0, 0, 0"
+        send "v ** v:"
+        send "%{_v} ** {_v}%"
+        send "= 1, 4, 9"
+        send "v ** 2:"
+        send "%{_v} ** 2%"
+        send "= 2, 4, 6"
+        send "v // v:"
+        send "%{_v} // {_v}%"
+        send "= 1, 1, 1"
+        send "v // 2:"
+        send "%{_v} // 2%"
+        send " = 0.5, 1, 1.5"
+
+        # vector between locations
+        send "vector between locations:"
+        send "%vector from location(1,2,3,world ""world"") to location(2,4,6,world ""world"")%"
+        send "= 1, 2, 3"
+
+        # vector from x, y, z
+        send "vector from x, y, z:"
+        send "%vector 1, 2, 3%"
+        send "= 1, 2, 3"
+
+        # vector from yaw and pitch
+        send "vector from yaw and pitch:"
+        send "%vector from yaw 45 and pitch 45%"
+        send "= -0.5, -0.71, 0.5"
+
+        # vector length
+        send "vector length:"
+        send "%length of vector 1, 2, 3%"
+        send "= %sqrt(14)%"
+        set {_v} to vector 1, 2, 3
+        set length of {_v} to 1
+        send "%length of {_v}%"
+        send "= 1"
+
+        # vector normalize
+        send "vector normalize:"
+        send "%normalize vector 1, 2, 3%"
+        set {_sr} to sqrt(14)
+        send "= %1/{_sr}%, %2/{_sr}%, %3/{_sr}%"
+
+        # vector of location
+        send "vector of location:"
+        send "%vector of location(1,2,3,world ""world"")%"
+        send "= 1, 2, 3"
+
+        # vector squared length
+        send "vector squared length:"
+        send "%squared length of vector 1, 2, 3%"
+        send "= 14"
+
+        # vector coordinates
+        send "vector coordinates:"
+        set {_v} to vector 1, 2, 3
+        send "%xx-coordinate of {_v}%, %yy-coordinate of {_v}%, %zz-coordinates of {_v}%"
+        send "= 1, 2, 3"
+        add 1 to xx-coordinate of {_v}
+        add 2 to yy-coordinate of {_v}
+        add 3 to zz-coordinate of {_v}
+        send "%xx-coordinate of {_v}%, %yy-coordinate of {_v}%, %zz-coordinates of {_v}%"
+        send "= 2, 4, 6"
+        set xx-coordinate of {_v} to 1
+        set yy-coordinate of {_v} to 2
+        set zz-coordinate of {_v} to 3
+        send "%xx-coordinate of {_v}%, %yy-coordinate of {_v}%, %zz-coordinates of {_v}%"
+        send "= 1, 2, 3"
+
+        # vector yaw and pitch
+        send "vector yaw and pitch"
+        set {_v} to vector -1, 1, 1
+        send "%yyaw of {_v}%, %ppitch of {_v}%"
+        send "= 45, -35.26"
+        add 45 to yyaw of {_v}
+        subtract 45 from ppitch of {_v}
+        send "%yyaw of {_v}%, %ppitch of {_v}%"
+        send "= 90, -80.26"
+        set yyaw of {_v} to -45
+        set ppitch of {_v} to 45
+        send "%yyaw of {_v}%, %ppitch of {_v}%"
+        send "= 315, 45"
