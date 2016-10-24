@@ -9,7 +9,9 @@ public class ExprVectorLength extends SimplePropertyExpression<Vector, Double> {
 
 	@Override
 	public Double convert(Vector vector) {
-		if (vector == null) return null;
+		if (vector == null) {
+			return null;
+		}
 		return vector.length();
 	}
 

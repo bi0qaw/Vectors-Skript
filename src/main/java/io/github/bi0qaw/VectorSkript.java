@@ -13,8 +13,8 @@ public class VectorSkript extends JavaPlugin {
 	public void onEnable() {
 		plugin = this;
 		Skript.registerAddon(this);
-		new VectorRegister();
 		new VectorType();
+		new VectorRegister();
 	}
 
 	public static VectorSkript getPlugin() {
