@@ -1,4 +1,6 @@
-command /a:
+# Test script I used to test all the vector effects / expressions
+
+command /vector-test:
     trigger:
         # rotate vector around another
         set {_v} to vector 0, 1, 2
