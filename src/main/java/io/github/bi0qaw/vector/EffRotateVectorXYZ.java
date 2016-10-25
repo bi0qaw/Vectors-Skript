@@ -11,16 +11,16 @@ public class EffRotateVectorXYZ extends Effect{
 
 	private final static Character[] axes = new Character[] {'x', 'y', 'z'};
 
-	private Expression<Vector> vector;
+	private Expression<Vector> vectors;
 	private Expression<Number> number;
 	private int mark;
 
 	public String toString(Event event, boolean b) {
-		return "rotate " + vector.toString() + " around " + axes[mark] + "-axis";
+		return "rotate " + vectors.toString() + " around " + axes[mark] + "-axis";
 	}
 
 	public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-		vector = (Expression<Vector>)expressions[0];
+		vectors = (Expression<Vector>)expressions[0];
 		number = (Expression<Number>)expressions[1];
 		mark = parseResult.mark;
 		return true;
@@ -28,21 +28,26 @@ public class EffRotateVectorXYZ extends Effect{
 
 	@Override
 	protected void execute(Event event) {
-		Vector v = vector.getSingle(event);
 		Number n = number.getSingle(event);
-		if (v == null || n == null){
+		if (n == null){
 			return;
 		}
 		switch (mark) {
 			case 1:
-				VectorMath.rotX(v, n.doubleValue());
+				for (Vector v : vectors.getAll(event)) {
+					VectorMath.rotX(v, n.doubleValue());
+				}
 				break;
 			case 2:
-				VectorMath.rotY(v, n.doubleValue());
+				for (Vector v : vectors.getAll(event)) {
+					VectorMath.rotY(v, n.doubleValue());
+				}
 				break;
 			case 3:
-				VectorMath.rotZ(v, n.doubleValue());
+				for (Vector v : vectors.getAll(event)) {
+					VectorMath.rotZ(v, n.doubleValue());
+				}
+				break;
 		}
-		return;
 	}
 }

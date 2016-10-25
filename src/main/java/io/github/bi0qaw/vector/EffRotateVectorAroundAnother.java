@@ -26,13 +26,14 @@ public class EffRotateVectorAroundAnother extends Effect{
 
 	@Override
 	protected void execute(Event event) {
-		Vector v1 = first.getSingle(event);
 		Vector v2 = second.getSingle(event);
 		Number n = number.getSingle(event);
-		if (v1 == null || v2 == null || n == null ){
+		if (v2 == null || n == null ){
 			return;
 		}
-		VectorMath.rot(v1, v2, n.doubleValue());
+		for (Vector v1 : first.getArray(event)) {
+			VectorMath.rot(v1, v2, n.doubleValue());
+		}
 	}
 
 

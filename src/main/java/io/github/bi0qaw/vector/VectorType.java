@@ -8,10 +8,13 @@ import ch.njol.skript.expressions.base.EventValueExpression;
 import ch.njol.skript.lang.ParseContext;
 import ch.njol.skript.registrations.Classes;
 import ch.njol.yggdrasil.Fields;
+import org.bukkit.block.DoubleChest;
 import org.bukkit.util.Vector;
 
 import java.io.NotSerializableException;
 import java.io.StreamCorruptedException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class VectorType {
 
@@ -27,14 +30,24 @@ public class VectorType {
 				.defaultExpression(new EventValueExpression<Vector>(Vector.class))
 				.parser(new Parser<Vector>() {
 
+					private final Pattern parsePattern = Pattern.compile("x?(:|=)? ?(-?\\d+(\\.\\d+)?), ?y?(:|=)? ?(-?\\d+(\\.\\d+)?), ?z?(:|=)? ?(-?\\d+(\\.\\d+)?)"
+							, Pattern.CASE_INSENSITIVE);
+
 					@Override
 					public Vector parse(String s, ParseContext parseContext) {
+						final Matcher m = parsePattern.matcher(s);
+						if (m.matches()) {
+							double x = Double.parseDouble(m.group(2));
+							double y = Double.parseDouble(m.group(5));
+							double z = Double.parseDouble(m.group(8));
+							return new Vector(x, y, z);
+						}
 						return null;
 					}
 
 					@Override
 					public boolean canParse(ParseContext context) {
-						return false;
+						return (context == ParseContext.COMMAND || context == ParseContext.EVENT);
 					}
 
 					@Override
@@ -46,12 +59,12 @@ public class VectorType {
 
 					@Override
 					public String toVariableNameString(Vector v) {
-							return v.getX() + "," + v.getY() + "," + v.getZ();
+						return v.getX() + ", " + v.getY() + ", " + v.getZ();
 					}
 
 					@Override
 					public String getVariableNamePattern() {
-						return "\\d+(\\.\\d+)?,-?\\d+(\\.\\d+)?,-?\\d+(\\.\\d+)?";
+						return "-?\\d+(\\.\\d+)?,-?\\d+(\\.\\d+)?,-?\\d+(\\.\\d+)?";
 					}
 
 					@Override

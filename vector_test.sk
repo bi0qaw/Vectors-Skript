@@ -1,6 +1,4 @@
-# Test script I used to test all the vector effects / expressions
-
-command /vector-test:
+command /a:
     trigger:
         # rotate vector around another
         set {_v} to vector 0, 1, 2
@@ -120,9 +118,9 @@ command /vector-test:
         send "%length of vector 1, 2, 3%"
         send "= %sqrt(14)%"
         set {_v} to vector 1, 2, 3
-        set length of {_v} to 1
+        set length of {_v} to 2
         send "%length of {_v}%"
-        send "= 1"
+        send "= 2"
 
         # vector normalize
         send "vector normalize:"
@@ -143,29 +141,29 @@ command /vector-test:
         # vector coordinates
         send "vector coordinates:"
         set {_v} to vector 1, 2, 3
-        send "%xx-coordinate of {_v}%, %yy-coordinate of {_v}%, %zz-coordinates of {_v}%"
+        send "%x of {_v}%, %y of {_v}%, %z of {_v}%"
         send "= 1, 2, 3"
-        add 1 to xx-coordinate of {_v}
-        add 2 to yy-coordinate of {_v}
-        add 3 to zz-coordinate of {_v}
-        send "%xx-coordinate of {_v}%, %yy-coordinate of {_v}%, %zz-coordinates of {_v}%"
+        add 1 to x of {_v}
+        add 2 to y of {_v}
+        add 3 to z of {_v}
+        send "%x of {_v}%, %y of {_v}%, %z of {_v}%"
         send "= 2, 4, 6"
-        set xx-coordinate of {_v} to 1
-        set yy-coordinate of {_v} to 2
-        set zz-coordinate of {_v} to 3
-        send "%xx-coordinate of {_v}%, %yy-coordinate of {_v}%, %zz-coordinates of {_v}%"
+        set x of {_v} to 1
+        set y of {_v} to 2
+        set z of {_v} to 3
+        send "%x of {_v}%, %y of {_v}%, %z of {_v}%"
         send "= 1, 2, 3"
 
         # vector yaw and pitch
         send "vector yaw and pitch"
         set {_v} to vector -1, 1, 1
-        send "%yyaw of {_v}%, %ppitch of {_v}%"
+        send "%vector yaw of {_v}%, %vector pitch of {_v}%"
         send "= 45, -35.26"
-        add 45 to yyaw of {_v}
-        subtract 45 from ppitch of {_v}
-        send "%yyaw of {_v}%, %ppitch of {_v}%"
+        add 45 to vector yaw of {_v}
+        subtract 45 from vector pitch of {_v}
+        send "%vector yaw of {_v}%, %vector pitch of {_v}%"
         send "= 90, -80.26"
-        set yyaw of {_v} to -45
-        set ppitch of {_v} to 45
-        send "%yyaw of {_v}%, %ppitch of {_v}%"
+        set vector yaw of {_v} to -45
+        set vector pitch of {_v} to 45
+        send "%vector yaw of {_v}%, %vector pitch of {_v}%"
         send "= 315, 45"

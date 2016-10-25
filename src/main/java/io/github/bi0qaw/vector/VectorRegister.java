@@ -5,6 +5,7 @@ import ch.njol.skript.classes.Converter;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.registrations.Converters;
 import ch.njol.skript.util.Direction;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.util.Vector;
 
@@ -15,8 +16,8 @@ public class VectorRegister {
 	static {
 
 		// Effects
-		Skript.registerEffect(EffRotateVectorAroundAnother.class, "rotate %vector% around %vector% by %number% [degrees]");
-		Skript.registerEffect(EffRotateVectorXYZ.class, "rotate %vector% around (1¦x|2¦y|3¦z)(-| )axis by %number% [degrees]");
+		Skript.registerEffect(EffRotateVectorAroundAnother.class, "rotate %vectors% around %vector% by %number% [degrees]");
+		Skript.registerEffect(EffRotateVectorXYZ.class, "rotate %vectors% around (1¦x|2¦y|3¦z)(-| )axis by %number% [degrees]");
 
 		// Expressions
 		Skript.registerExpression(ExprAngleBetweenVectors.class, Float.class, ExpressionType.SIMPLE, "angle between %vector% and %vector%");
@@ -64,10 +65,7 @@ public class VectorRegister {
 				if (vector == null) {
 					return null;
 				}
-				float pitch =(float) (VectorMath.skriptPitch(VectorMath.getPitch(vector)) * VectorMath.DEG_TO_RAD);
-				float yaw = (float) (VectorMath.skriptYaw(VectorMath.getYaw(vector)) * VectorMath.DEG_TO_RAD);
-				double length = vector.length();
-				return new Direction(pitch, yaw, length);
+				return new Direction(vector);
 			}
 		});
 	}
