@@ -5,7 +5,6 @@ import ch.njol.skript.classes.Converter;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.registrations.Converters;
 import ch.njol.skript.util.Direction;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.util.Vector;
 
@@ -29,6 +28,7 @@ public class VectorRegister {
 				"%vector% [to location] [in] %world%", "location (from|of) %vector% [(from|in)] %world%",
 				"%vector% [to location] [in] %world% with yaw %number% and pitch %number%",
 				"location (from|of) %vector% [(in|from)] %world% with yaw %number% and pitch %number%");
+		Skript.registerExpression(ExprLocationVectorOffset.class, Location.class, ExpressionType.SIMPLE, "%location%[ ]~[~][ ]%vectors%");
 		Skript.registerExpression(ExprRandomVector.class, Vector.class, ExpressionType.SIMPLE, "random vector");
 		Skript.registerExpression(ExprSphericalVector.class, Vector.class, ExpressionType.SIMPLE, "[new] spherical vector [(from|with)] [radius] %number%, [yaw] %number%(,| and) [pitch] %number%");
 		Skript.registerExpression(ExprVectorBetweenLocations.class, Vector.class, ExpressionType.SIMPLE, "vector (from|between) %location% (to|and) %location%");
