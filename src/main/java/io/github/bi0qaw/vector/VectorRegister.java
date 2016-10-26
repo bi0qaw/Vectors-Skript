@@ -23,14 +23,14 @@ public class VectorRegister {
 		Skript.registerExpression(ExprAngleBetweenVectors.class, Float.class, ExpressionType.SIMPLE, "angle between %vector% and %vector%");
 		Skript.registerExpression(ExprVectorArithmetic.class, Vector.class, ExpressionType.SIMPLE, ExprVectorArithmetic.patterns.getPatterns());
 		Skript.registerExpression(ExprCrossProduct.class, Vector.class, ExpressionType.SIMPLE, "%vector% cross %vector%");
-		Skript.registerExpression(ExprCylindricalVector.class, Vector.class, ExpressionType.SIMPLE, "[new] cylindrical vector [from|with] [radius] %number%, [yaw] %number%(,| and) [height] %number%");
+		Skript.registerExpression(ExprCylindricalVector.class, Vector.class, ExpressionType.SIMPLE, "[new] cylindrical vector [(from|with)] [radius] %number%, [yaw] %number%(,| and) [height] %number%");
 		Skript.registerExpression(ExprDotProduct.class, Double.class, ExpressionType.SIMPLE, "%vector% dot %vector%");
 		Skript.registerExpression(ExprLocationFromVector.class, Location.class, ExpressionType.SIMPLE,
 				"%vector% [to location] [in] %world%", "location (from|of) %vector% [(from|in)] %world%",
 				"%vector% [to location] [in] %world% with yaw %number% and pitch %number%",
 				"location (from|of) %vector% [(in|from)] %world% with yaw %number% and pitch %number%");
 		Skript.registerExpression(ExprRandomVector.class, Vector.class, ExpressionType.SIMPLE, "random vector");
-		Skript.registerExpression(ExprSphericalVector.class, Vector.class, ExpressionType.SIMPLE, "[new] spherical vector [from|with] [radius] %number%, [yaw] %number%(,| and) [pitch] %number%");
+		Skript.registerExpression(ExprSphericalVector.class, Vector.class, ExpressionType.SIMPLE, "[new] spherical vector [(from|with)] [radius] %number%, [yaw] %number%(,| and) [pitch] %number%");
 		Skript.registerExpression(ExprVectorBetweenLocations.class, Vector.class, ExpressionType.SIMPLE, "vector (from|between) %location% (to|and) %location%");
 		Skript.registerExpression(ExprVectorFromYawAndPitch.class, Vector.class, ExpressionType.SIMPLE, "[new] vector from yaw %number% and pitch %number%");
 		Skript.registerExpression(ExprVectorFromXYZ.class, Vector.class, ExpressionType.SIMPLE, "[new] vector [(from|at|to)] %number%,[ ]%number%(,[ ]| and )%number%");
@@ -42,6 +42,7 @@ public class VectorRegister {
 		Skript.registerExpression(ExprVectorYawPitch.class, Number.class, ExpressionType.PROPERTY,"vector (0¦yaw|1¦pitch) of %vector%");
 
 		// Converters
+		/*
 		Converters.registerConverter(Location.class, Vector.class, new Converter<Location, Vector>() {
 			public Vector convert(Location location) {
 				if (location == null) {
@@ -50,6 +51,7 @@ public class VectorRegister {
 				return new Vector(location.getX(), location.getY(), location.getZ());
 			}
 		});
+		*/
 
 		Converters.registerConverter(Number.class, Vector.class, new Converter<Number, Vector>() {
 			public Vector convert(Number number) {
