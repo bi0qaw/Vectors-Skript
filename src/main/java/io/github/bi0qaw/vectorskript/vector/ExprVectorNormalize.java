@@ -1,19 +1,22 @@
-package io.github.bi0qaw.vector;
+package io.github.bi0qaw.vectorskript.vector;
 
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
-import org.bukkit.Location;
 import org.bukkit.event.Event;
 import org.bukkit.util.Vector;
 
-public class ExprVectorOfLocation extends SimpleExpression<Vector> {
+public class ExprVectorNormalize extends SimpleExpression<Vector> {
 
-	private Expression<Location> location;
+	private Expression<Vector> vector;
 
 	public boolean isSingle() {
 		return true;
+	}
+
+	public String toString(Event event, boolean b) {
+		return "normalized " + vector.toString();
 	}
 
 	public Class<? extends Vector> getReturnType() {
@@ -21,20 +24,16 @@ public class ExprVectorOfLocation extends SimpleExpression<Vector> {
 	}
 
 	public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-		location = (Expression<Location>)expressions[0];
+		vector = (Expression<Vector>)expressions[0];
 		return true;
 	}
 
 	@Override
 	protected Vector[] get(Event event) {
-		Location l = location.getSingle(event);
-		if (l == null){
+		Vector v = vector.getSingle(event);
+		if (v == null){
 			return null;
 		}
-		return new Vector[] { l.toVector() };
-	}
-
-	public String toString(Event event, boolean b) {
-		return "vector of location " + location.toString();
+		return new Vector[]{ v.clone().normalize() };
 	}
 }

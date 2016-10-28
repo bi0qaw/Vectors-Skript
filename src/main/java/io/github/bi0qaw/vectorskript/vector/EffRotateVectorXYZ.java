@@ -1,4 +1,4 @@
-package io.github.bi0qaw.vector;
+package io.github.bi0qaw.vectorskript.vector;
 
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;

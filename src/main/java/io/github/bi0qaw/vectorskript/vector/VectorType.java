@@ -1,4 +1,4 @@
-package io.github.bi0qaw.vector;
+package io.github.bi0qaw.vectorskript.vector;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.classes.ClassInfo;
@@ -8,7 +8,6 @@ import ch.njol.skript.expressions.base.EventValueExpression;
 import ch.njol.skript.lang.ParseContext;
 import ch.njol.skript.registrations.Classes;
 import ch.njol.yggdrasil.Fields;
-import org.bukkit.block.DoubleChest;
 import org.bukkit.util.Vector;
 
 import java.io.NotSerializableException;

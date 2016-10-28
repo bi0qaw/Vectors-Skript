@@ -1,4 +1,4 @@
-package io.github.bi0qaw.vector;
+package io.github.bi0qaw.vectorskript.vector;
 
 import ch.njol.skript.classes.Changer;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
