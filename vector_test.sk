@@ -115,11 +115,11 @@ command /a:
 
         # vector length
         send "vector length:"
-        send "%length of vector 1, 2, 3%"
+        send "%standard length of vector 1, 2, 3%"
         send "= %sqrt(14)%"
         set {_v} to vector 1, 2, 3
-        set length of {_v} to 2
-        send "%length of {_v}%"
+        set standard length of {_v} to 2
+        send "%standard length of {_v}%"
         send "= 2"
 
         # vector normalize
