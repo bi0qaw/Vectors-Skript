@@ -39,23 +39,12 @@ public class VectorRegister {
 					"location (from|of) %vector% [(in|from)] %world% with yaw %number% and pitch %number%");
 			Skript.registerExpression(ExprRandomVector.class, Vector.class, ExpressionType.SIMPLE, "random vector");
 			Skript.registerExpression(ExprVectorFromXYZ.class, Vector.class, ExpressionType.SIMPLE, "[new] vector [(from|at|to)] %number%,[ ]%number%(,[ ]| and )%number%");
-			Skript.registerExpression(ExprVectorLength.class, Double.class, ExpressionType.PROPERTY, "length of %vector%", "%vector%['s] length%");
+			Skript.registerExpression(ExprVectorLength.class, Double.class, ExpressionType.PROPERTY, "(vector|standard|normal) length of %vector%", "%vector%['s] (vector|standard|normal) length");
 			Skript.registerExpression(ExprVectorNormalize.class, Vector.class, ExpressionType.SIMPLE, "normalize %vector%", "%vector% normalized");
 			Skript.registerExpression(ExprVectorSquaredLength.class, Double.class, ExpressionType.SIMPLE, "squared length of %vector%", "%vector%['s] squared length");
 			Skript.registerExpression(ExprVectorOfLocation.class, Vector.class, ExpressionType.SIMPLE, "vector (of|from|to) %location%", "%location%['s] vector");
 			Skript.registerExpression(ExprVectorXYZ.class, Number.class, ExpressionType.PROPERTY, "(0¦x|1¦y|2¦z) of %vector%");
 		}
-		// Converters
-		/*
-		Converters.registerConverter(Location.class, Vector.class, new Converter<Location, Vector>() {
-			public Vector convert(Location location) {
-				if (location == null) {
-					return null;
-				}
-				return new Vector(location.getX(), location.getY(), location.getZ());
-			}
-		});
-		*/
 
 		Converters.registerConverter(Number.class, Vector.class, new Converter<Number, Vector>() {
 			public Vector convert(Number number) {
