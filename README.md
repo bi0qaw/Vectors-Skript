@@ -51,7 +51,7 @@ Properties of vectors:
 ```
 (x|y|z) of %vector%
 vector (yaw|pitch) of %vector%
-length of %vector%
+(vector|standard|normal) length of %vector%
 %vector%['s] length%
 squared length of %vector%
 %vector%['s] squared length
