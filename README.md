@@ -3,6 +3,9 @@ A simple addon that adds vectors to the Skript-Language.
 
 Main page: [SkUnity.com] (https://forums.skunity.com/t/10690)
 
+### NOTE
+This addon was merged with Skript in Bensku's fork (version dev28c): https://github.com/bensku/Skript/releases/tag/dev28c
+
 Creating a new vector:
 ```
 [new] vector [(from|at|to)] %number%,[ ]%number%(,[ ]| and )%number%
